@@ -10,3 +10,5 @@ Die Umschaltzeit ist kritisch und ich habe sie durch rumprobieren herausbekommen
 Das Modul wird zum Auslesen des TD3511 über den IR-Schreib-Lesekopf (USB-Interface) (https://wiki.volkszaehler.org/hardware/controllers/ir-schreib-lesekopf-usb-ausgang) von Volkszähler genutzt.
 
 Die Daten werden in eine MySQL-DB von FHEM geschrieben und sind somit dort auswertbar.
+
+<img src="/Diagramm TD3511.jpg" alt="Diagramm FHEM"/>
