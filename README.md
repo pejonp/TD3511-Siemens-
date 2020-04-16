@@ -11,4 +11,4 @@ Das Modul wird zum Auslesen des TD3511 über den IR-Schreib-Lesekopf (USB-Interf
 
 Die Daten werden in eine MySQL-DB von FHEM geschrieben und sind somit dort auswertbar.
 
-<img src="/Diagramm TD3511.jpg" alt="Diagramm FHEM"/>
+<img src="/Diagramm_TD3511.JPG" alt="Diagramm FHEM"/>
