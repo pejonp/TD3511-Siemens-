@@ -10,5 +10,6 @@ Die Umschaltzeit ist kritisch und ich habe sie durch rumprobieren herausbekommen
 Das Modul wird zum Auslesen des TD3511 über den IR-Schreib-Lesekopf (USB-Interface) (https://wiki.volkszaehler.org/hardware/controllers/ir-schreib-lesekopf-usb-ausgang) von Volkszähler genutzt.
 
 Die Daten werden in eine MySQL-DB von FHEM geschrieben und sind somit dort auswertbar.
+Die rote Linie (BezugHaus) ist die vom TD3511 und die grüne Linie (SE5k) ist die erzeugte Energie vom SolarEdge Wechselrichter.
 
 <img src="/Diagramm_TD3511.JPG" alt="Diagramm FHEM"/>
