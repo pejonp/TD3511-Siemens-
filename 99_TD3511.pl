@@ -3,15 +3,15 @@
 ##############################################
 # $Id: 00_TD3511.pm 1001 2016-10-28 10:10:10Z pejonp $
 #
-# (m)ein Stromzähler mit IR-Schnittstelle blubbert nach einem "Anforderung-
+# (m)ein StromzÃ¤hler mit IR-Schnittstelle blubbert nach einem "Anforderung-
 # telegramm" Daten raus. Das Telegramm ist mit 300 Baud, 7 Bit, 1 Stoppbit
-# und gerader Parität zu senden. Das ist der Initialmodus von Geräten,
+# und gerader ParitÃ¤t zu senden. Das ist der Initialmodus von GerÃ¤ten,
 # die das Protokoll IEC 62056-21 implementieren.
 #
 # Autor: Andreas Schulze
 # Datum: 20120321
 #
-# 28.08.2016 J.Köhn pejonp
+# 28.08.2016 J.KÃ¶hn pejonp
 #
 use DBI;
 use warnings;
@@ -30,10 +30,9 @@ my $AufforderungsTelegramm = "\n/?!\r\n";
 my $DEVICE_VORBELEGUNG = "TD3511";
 my $TYPE_VORBELEGUNG = "ZAEHLER";
 
-#my $db_host = '192.168.2.123';
-my $db_host = '192.168.4.122';
+my $db_host = '192.xxx.x.xxx';
 my $db_port = 3306;
-my ($db_user, $db_name, $db_pass) = ('fhem', 'fhem', 'frosch12');
+my ($db_user, $db_name, $db_pass) = ('fhem', 'fhem', 'passwd');
 my $OptionsAuswahlTelegramm = "\x06060\r\n";
 my $debug = 0;
 
@@ -58,13 +57,13 @@ my $now1 =strftime "%Y-%m-%d_%H:%M:%S", localtime;
 ### KONFIGURATION ###
 my %channels = ( #Obis-Zahl => Gruppenadresse
                 "F.F"=>"F-F",
-	             	"1.7.0"=>"1-7-0",    #Leistung
+	       	"1.7.0"=>"1-7-0",    #Leistung
                 "2.7.0"=>"2-7-0",    #Einspeiseleistung
                 #"2.8.0"=>"2-8-0",
-                "1.8.0"=>"1-8-0",    #Zählerstand gesamt
-                "1.8.1"=>"1-8-1",    #Aktueller Zählerstand Tag
-                "1.8.2"=>"1-8-2",    #Aktueller Zählerstand Nacht
-                "2.8.6"=>"2-8-6",    #Aktueller Zählerstand Rücklieferung
+                "1.8.0"=>"1-8-0",    #ZÃ¤hlerstand gesamt
+                "1.8.1"=>"1-8-1",    #Aktueller ZÃ¤hlerstand Tag
+                "1.8.2"=>"1-8-2",    #Aktueller ZÃ¤hlerstand Nacht
+                "2.8.6"=>"2-8-6",    #Aktueller ZÃ¤hlerstand RÃ¼cklieferung
                 "14.7"=>"14-7",      #Frequenz
                 "31.7"=>"31-7",      #Strom_L1
                 "51.7"=>"51-7",      #Strom_L2
@@ -171,9 +170,9 @@ do {
                 #print "$now1 TD3511 $gg $VALUE $UNIT\n";
                 # 'current' (TIMESTAMP, DEVICE , TYPE , EVENT , READING , VALUE , UNIT ); 
                 $dbh->do("INSERT INTO history VALUES (?, ?, ?, ?, ?, ?, ?)", undef, $TIMESTAMP , $DEVICE, $TYPE,$EVENT,$READING,$VALUE,$UNIT );
-                # beiden Tabellen füllen vorher in current löschen
+                # beiden Tabellen fÃ¼llen vorher in current lÃ¶schen
                 if ($zaehler == 0 ) {         
-                    # da mehrere Datensätze -> Merker setzten, das nicht wieder die neuen gelöscht werden
+                    # da mehrere DatensÃ¤tze -> Merker setzten, das nicht wieder die neuen gelÃ¶scht werden
                     # update der Tabelle hat nich so funktioniert
                     $dbh->do("delete from  current WHERE DEVICE='$DEVICE'") || die "delete: $DBI::errstr \n";
                     $zaehler = 1;
